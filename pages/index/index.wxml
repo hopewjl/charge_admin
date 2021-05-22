@@ -1,0 +1,24 @@
+<view>蓝牙测试状态：{{bluetoothstate}}</view>
+<view>电池类型：铅酸电池</view>
+<view>串数：{{battery_series}}</view>
+<View>单串电压设定值（25℃值）：{{single_voltage}}V</View>
+<view>设定的最高电压：{{voltageset_bc}}V</view>
+<view>当前设定电压{{voltagesetnow}}V</view>
+<view>输出端电压： {{voltageout}} V</view>
+<view>内部电压： {{voltagein}} V</view>
+<view>输出电流 {{currentnow}} A</view>
+<view>已充入电量： {{coulomb}} AH</view>
+<view>能量： {{watthour}} WH</view>
+<view>环境温度： {{temperature_Ambient}} ℃</view>
+<view>内部最高温度： {{temperature_diode}} ℃</view>
+<View>最大电流设定值:{{maxcurrent}}A</View>
+<view>当前电流设定值:{{currentset}}A</view>
+<view>减流值：{{current_dec_value}}mA</view>
+<view>温度补偿值：{{temperature_comp}}mV/℃</view>
+<view>线损补偿值：50毫欧</view>
+<view>本次预充阶段时间：{{time_yc}}分钟</view>
+<view>本次快充阶段时间：{{time_kc}}小时</view>
+<view>本次标充阶段时间：{{time_bc}}小时</view>
+<view>本次维护阶段时间：{{time_wh}}分钟</view>
+<view>本次充电总计时：{{charger_time_now}}小时</view>
+<view>充电器软件版本 0.1 充电器硬件版本 0.1</view>
