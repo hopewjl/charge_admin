@@ -19,8 +19,8 @@ let  guage_option ={
       {
           name: 'gauge 0',
           type: 'gauge',
-          min: -200,
-          max: 250,
+          min: 0,
+          max: 40,
           startAngle: -30,
           endAngle: -315,
           splitNumber: 9,
@@ -64,15 +64,15 @@ let  guage_option ={
               }
           },
           data: [{
-              value: 250,
-              name: 'km/h'
+              value: 20,
+              name: 'A'
           }]
       },
       {
           name: 'gauge 1',
           type: 'gauge',
           min: 0,
-          max: 250,
+          max: 40,
           startAngle: -140,
           endAngle: -305,
           splitNumber: 5,
@@ -132,13 +132,74 @@ let  guage_option ={
               show: false
           },
           data: [{
-              value: 0,
-              name: ''
+              value: 5,
+              name: '当前电流'
           }]
+      },
+      {
+        name: 'gauge 2',
+        type: 'gauge',
+        min: 0,
+        max: 8,
+        z: 10,
+        splitNumber: 8,
+        radius: '40%',
+        center: ['25%', '60%'],
+        axisLine: {
+            lineStyle: {
+                width: 14,
+                color: [
+                    [1, '#000']
+                ],
+            }
+        },
+        splitLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false
+        },
+        anchor: {},
+        pointer: {
+            show: false
+        },
+        title: {
+            show: false
+        },
+        detail: {
+            offsetCenter: ['0%', '15%'],
+            formatter: '{b|当前设定电流:}{a|{value}}',
+            rich: {
+                a: {
+                    fontSize: 25,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    align: 'center',
+                    padding: [0, 0, 0, 0]
+                },
+                b: {
+                    fontSize: 14,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    rotate: 30,
+                    padding: [0, 0, 0, 0]
+                }
+            }
+        },
+        // value is speed
+        data: [{
+            value: 5,
+            name: ''
+        }]
       },
       // middle
       {
-          name: 'gauge 2',
+          name: 'gauge 3',
           type: 'gauge',
           min: 0,
           max: 100,
@@ -248,16 +309,16 @@ let  guage_option ={
               show: false
           },
           detail: {
-              offsetCenter: ['25%', '50%'],
-              formatter: '{a|{value}}{b|v}',
+              offsetCenter: ['0%', '20%'],
+              formatter: '{b|当前设定电压:}{a|{value}}',
               rich: {
                   a: {
-                      fontSize: 40,
+                      fontSize: 25,
                       fontWeight: 800,
                       fontFamily: "Arial",
                       color: '#fff',
                       align: 'center',
-                      padding: [0, 5, 0, 0]
+                      padding: [0, 0, 0, 0]
                   },
                   b: {
                       fontSize: 14,
@@ -265,19 +326,79 @@ let  guage_option ={
                       fontFamily: "Arial",
                       color: '#fff',
                       rotate: 30,
-                      padding: [0, 0, 20, 0]
+                      padding: [0, 0, 0, 0]
                   }
               }
           },
           // value is speed
           data: [{
-              value: 0,
+              value: 2,
               name: ''
           }]
       },
+      {
+        name: 'gauge 4',
+        type: 'gauge',
+        min: 0,
+        max: 8,
+        z: 10,
+        splitNumber: 8,
+        radius: '100%',
+        axisLine: {
+            lineStyle: {
+                width: 14,
+                color: [
+                    [1, '#000']
+                ],
+            }
+        },
+        splitLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false
+        },
+        anchor: {},
+        pointer: {
+            show: false
+        },
+        title: {
+            show: false
+        },
+        detail: {
+            offsetCenter: ['0%', '33%'],
+            formatter: '{b|最高设定电压:}{a|{value}}',
+            rich: {
+                a: {
+                    fontSize: 25,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    align: 'center',
+                    padding: [0, 0, 0, 0]
+                },
+                b: {
+                    fontSize: 14,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    rotate: 30,
+                    padding: [0, 0, 0, 0]
+                }
+            }
+        },
+        // value is speed
+        data: [{
+            value: 2,
+            name: ''
+        }]
+    },
       // right
       {
-          name: 'gauge 4',
+          name: 'gauge 5',
           type: 'gauge',
           min: 0,
           max: 8,
@@ -539,8 +660,13 @@ Page({
   onLoad: function(options) {
     let self = this
     setInterval(()=>{
-      guage_option.series[2].data[0].value = app.charge_info.voltagesetnow;
-      guage_option.series[3].data[0].value = app.charge_info.voltagesetnow; 
+      guage_option.series[1].data[0].value = app.charge_info.currentnow; 
+      guage_option.series[2].data[0].value = app.charge_info.currentset; 
+
+      guage_option.series[3].data[0].value = app.charge_info.voltagesetnow;
+      guage_option.series[4].data[0].value = app.charge_info.voltagesetnow; 
+      guage_option.series[5].data[0].value = app.charge_info.voltageset_bc; 
+      
       if (myChart){
         myChart.setOption(guage_option,true)
       }

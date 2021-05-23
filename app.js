@@ -42,12 +42,12 @@ App({
     hexdata: [],
     writeDatas: "",
     voltagesetnow: 0, // 
-    voltagein: '',
+    voltagein: 0,
     voltageout: '',
     single_voltage: '',
     maxcurrent: '',
-    currentset: '',
-    currentnow: '',
+    currentset: 0,
+    currentnow: 3,
     temperature_diode: '',
     temperature_Ambient: '',
     charger_voltage_value: '',
@@ -67,6 +67,6 @@ App({
     time_kc: '',
     time_bc: '',
     time_wh: '',
-    voltageset_bc: ''
+    voltageset_bc: 0
   }
 })
