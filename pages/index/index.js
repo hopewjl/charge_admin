@@ -66,7 +66,7 @@ Page({
           voltageout: (receiveData[5] * 256 + receiveData[6]) / 10,
           single_voltage: (receiveData[7] * 256 + receiveData[8]) / 100,
         }) 
-        app.gauge_option.series[2].data[0].value = app.charge_info.voltagesetnow;
+        
         break
       case 0xeb:
         Object.assign(app.charge_info,{
