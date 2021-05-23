@@ -1,24 +1,40 @@
-<view>蓝牙测试状态：{{bluetoothstate}}</view>
-<view>电池类型：铅酸电池</view>
-<view>串数：{{battery_series}}</view>
-<View>单串电压设定值（25℃值）：{{single_voltage}}V</View>
-<view>设定的最高电压：{{voltageset_bc}}V</view>
-<view>当前设定电压{{voltagesetnow}}V</view>
-<view>输出端电压： {{voltageout}} V</view>
-<view>内部电压： {{voltagein}} V</view>
-<view>输出电流 {{currentnow}} A</view>
-<view>已充入电量： {{coulomb}} AH</view>
-<view>能量： {{watthour}} WH</view>
-<view>环境温度： {{temperature_Ambient}} ℃</view>
-<view>内部最高温度： {{temperature_diode}} ℃</view>
-<View>最大电流设定值:{{maxcurrent}}A</View>
-<view>当前电流设定值:{{currentset}}A</view>
-<view>减流值：{{current_dec_value}}mA</view>
-<view>温度补偿值：{{temperature_comp}}mV/℃</view>
-<view>线损补偿值：50毫欧</view>
-<view>本次预充阶段时间：{{time_yc}}分钟</view>
-<view>本次快充阶段时间：{{time_kc}}小时</view>
-<view>本次标充阶段时间：{{time_bc}}小时</view>
-<view>本次维护阶段时间：{{time_wh}}分钟</view>
-<view>本次充电总计时：{{charger_time_now}}小时</view>
-<view>充电器软件版本 0.1 充电器硬件版本 0.1</view>
+<wxs module="utils">
+module.exports.max = function(n1, n2) {
+  return Math.max(n1, n2)
+}
+module.exports.len = function(arr) {
+  arr = arr || []
+  return arr.length
+}
+</wxs>
+<view>
+  <!--<button bindtap="stopBluetoothDevicesDiscovery">停止扫描</button>-->
+  <!--<button bindtap="closeBluetoothAdapter">结束流程</button>-->
+</view>
+
+
+<view class="devices_summary">已发现 {{devices.length}} 个外围设备：</view>
+<scroll-view class="device_list" scroll-y scroll-with-animation>
+  <view wx:for="{{devices}}" wx:key="index"
+   data-device-id="{{item.deviceId}}"
+   data-name="{{item.name || item.localName}}"
+   bindtap="createBLEConnection" 
+   class="device_item"
+   hover-class="device_item_hover">
+    <view style="font-size: 16px; color: #333;">{{item.name}}</view>
+    <view style="font-size: 10px">信号强度: {{item.RSSI}}dBm ({{utils.max(0, item.RSSI + 100)}}%)</view>
+    <view style="font-size: 10px">UUID: {{item.deviceId}}</view>
+    <view style="font-size: 10px">Service数量: {{utils.len(item.advertisServiceUUIDs)}}</view>
+  </view>
+</scroll-view>
+ 
+
+<view class="connected_info" wx:if="{{connected}}">
+  <view>
+    <text>已连接到 {{name}}</text>
+    <view class="operation">
+    <button size="mini" bindtap="closeBLEConnection">断开连接</button>
+    </view>
+  </view> 
+  
+</view>

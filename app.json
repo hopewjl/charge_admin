@@ -1,11 +1,13 @@
 {
   "pages": [
-    "index/index"
+    "pages/index/index",
+    "pages/gauge/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "backgroundColor": "#eee",
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTitleText": "change admin",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
