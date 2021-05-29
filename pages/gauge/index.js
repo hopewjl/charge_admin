@@ -174,7 +174,68 @@ let  guage_option ={
             formatter: '{b|当前设定电流:}{a|{value}}',
             rich: {
                 a: {
-                    fontSize: 25,
+                    fontSize: 20,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    align: 'center',
+                    padding: [0, 0, 0, 0]
+                },
+                b: {
+                    fontSize: 14,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    rotate: 30,
+                    padding: [0, 0, 0, 0]
+                }
+            }
+        },
+        // value is speed
+        data: [{
+            value: 5,
+            name: ''
+        }]
+      },
+      {
+        name: 'gauge 3',
+        type: 'gauge',
+        min: 0,
+        max: 8,
+        z: 10,
+        splitNumber: 8,
+        radius: '40%',
+        center: ['25%', '60%'],
+        axisLine: {
+            lineStyle: {
+                width: 14,
+                color: [
+                    [1, '#000']
+                ],
+            }
+        },
+        splitLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false
+        },
+        anchor: {},
+        pointer: {
+            show: false
+        },
+        title: {
+            show: false
+        },
+        detail: {
+            offsetCenter: ['0%', '40%'],
+            formatter: '{b|最大设定电流:}{a|{value}}',
+            rich: {
+                a: {
+                    fontSize: 20,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -199,15 +260,15 @@ let  guage_option ={
       },
       // middle
       {
-          name: 'gauge 3',
+          name: 'gauge 4',
           type: 'gauge',
-          min: 0,
-          max: 100,
+          min: 40,
+          max: 65,
           z: 10,
           startAngle: 210,
           endAngle: -30,
-          splitNumber: 8,
-          radius: '100%',
+          splitNumber: 10,
+          radius: '90%',
           center: ['50%', '50%'],
           axisLine: {
               show: true,
@@ -277,13 +338,13 @@ let  guage_option ={
           }
       },
       {
-          name: 'gauge 3',
+          name: 'gauge 5',
           type: 'gauge',
           min: 0,
           max: 8,
           z: 10,
           splitNumber: 8,
-          radius: '100%',
+          radius: '90%',
           axisLine: {
               lineStyle: {
                   width: 14,
@@ -313,7 +374,7 @@ let  guage_option ={
               formatter: '{b|当前设定电压:}{a|{value}}',
               rich: {
                   a: {
-                      fontSize: 25,
+                      fontSize: 18,
                       fontWeight: 800,
                       fontFamily: "Arial",
                       color: '#fff',
@@ -337,13 +398,13 @@ let  guage_option ={
           }]
       },
       {
-        name: 'gauge 4',
+        name: 'gauge 6',
         type: 'gauge',
         min: 0,
         max: 8,
         z: 10,
         splitNumber: 8,
-        radius: '100%',
+        radius: '90%',
         axisLine: {
             lineStyle: {
                 width: 14,
@@ -373,7 +434,7 @@ let  guage_option ={
             formatter: '{b|最高设定电压:}{a|{value}}',
             rich: {
                 a: {
-                    fontSize: 25,
+                    fontSize: 18,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -395,10 +456,10 @@ let  guage_option ={
             value: 2,
             name: ''
         }]
-    },
+      },
       // right
       {
-          name: 'gauge 5',
+          name: 'gauge 7',
           type: 'gauge',
           min: 0,
           max: 8,
@@ -429,13 +490,13 @@ let  guage_option ={
           },
           title: {},
           detail: {
-              offsetCenter: ['-15%', 0],
+              offsetCenter: [0, 0],
               formatter: [
                   '{a|                  00:00}',
-                  '{a|行驶时间       0:00}{b| h}',
-                  '{a|行驶距离        0.0}{b| km}',
-                  '{a|平均耗能        ---}{b| 1/100km}',
-                  '{a|平均速度        ---}{b| km/h}'
+                  '{a|冲入电量 }{b| AH}',
+                  '{a|本次充电时间 }{b| min}',
+                  '{a|内部温度 }{b| °C}',
+                  '{a|环境温度 }{b| °C}'
               ].join('\n'),
               rich: {
                   a: {
@@ -463,12 +524,12 @@ let  guage_option ={
               }
           },
           data: [{
-              value: 250,
+              value: 100,
               name: ''
           }]
       },
       {
-          name: 'gauge 5',
+          name: 'gauge 8',
           type: 'gauge',
           min: 0,
           max: 1,
@@ -525,20 +586,14 @@ let  guage_option ={
                   color: '#fff'
               }
           },
-          anchor: {
-              show: true,
-              itemStyle: {},
-              offsetCenter: ['-22%', '-57%'],
-              size: 18,
-              icon: 'path://M1.11979167,1.11111112 C1.11979167,0.497461393 1.61725306,0 2.23090279,0 L12.2309028,0 C12.8445525,1.43824153e-08 13.3420139,0.497461403 13.3420139,1.11111112 L13.3420139,10 L15.5642361,10 C16.7915356,10 17.7864583,10.9949228 17.7864583,12.2222222 L17.7864583,16.6666667 C17.7865523,17.28025 18.2839861,17.7776077 18.8975694,17.7776077 C19.5111527,17.7776077 20.0085866,17.28025 20.0086805,16.6666667 L20.0086805,8.88888888 L17.7864583,8.88888888 C17.1728086,8.88888888 16.6753472,8.3914275 16.6753472,7.77777779 L16.6753472,3.79333333 L15.6197917,2.73777777 C15.1859413,2.30392741 15.1859413,1.60051702 15.6197917,1.16666667 L15.6197917,1.16666667 C16.053642,0.732816318 16.7570524,0.732816318 17.1909028,1.16666667 L21.9053472,5.88111112 C22.1140468,6.08922811 22.2312072,6.37193273 22.2309028,6.66666667 L22.2309028,16.6666667 C22.2309028,18.5076158 20.7385186,20 18.8975695,20 C17.0566203,20 15.5642361,18.5076158 15.5642361,16.6666667 L15.5642361,12.2222222 L13.3420139,12.2222222 L13.3420139,17.7777778 L13.3420139,17.7777778 C13.9556636,17.7777778 14.453125,18.2752392 14.453125,18.8888889 L14.453125,18.8888889 C14.453125,19.5025386 13.9556636,20 13.3420139,20 L1.11979165,20 C0.506141934,20 0.00868054688,19.5025386 0.00868054687,18.8888889 L0.00868054687,18.8888889 C0.00868054688,18.2752392 0.506141934,17.7777778 1.11979165,17.7777778 L1.11979167,17.7777778 L1.11979167,1.11111112 Z M3.34201388,2.22222221 L3.34201388,8.88888888 L11.1197917,8.88888888 L11.1197917,2.22222221 L3.34201388,2.22222221 Z'
-          },
+          
           pointer: {
               show: false
           },
           title: {},
           detail: {
               offsetCenter: ['10%', '-56%'],
-              formatter: '{a|831}{b| km}',
+              formatter: '{a|0}{b| %}',
               rich: {
                   a: {
                       fontSize: 15,
@@ -554,81 +609,10 @@ let  guage_option ={
               }
           },
           data: [{
-              value: 0.85,
+              value: 0.5,
               name: ''
           }]
-      },
-      {
-          name: 'gauge 6',
-          type: 'gauge',
-          min: -120,
-          max: -60,
-          startAngle: 230,
-          endAngle: 310,
-          clockwise: false,
-          splitNumber: 2,
-          radius: '65%',
-          center: ['75%', '55%'],
-          axisLine: {
-              lineStyle: {
-                  color: [
-                      [1, '#AE96A6'],
-                      [1.1, '#f00']
-                  ],
-              }
-          },
-          splitLine: {
-              distance: -8,
-              length: 12,
-              lineStyle: {
-                  color: '#fff',
-                  width: 4
-              }
-          },
-          axisTick: {
-              splitNumber: 3,
-              length: 8,
-              distance: -8,
-              lineStyle: {
-                  color: '#fff',
-                  width: 2
-              }
-          },
-          axisLabel: {
-              distance: 14,
-              fontSize: 18,
-              fontWeight: 800,
-              fontFamily: "Arial",
-              color: '#fff',
-              formatter: function(value) {
-                  return -value
-              }
-          },
-          anchor: {
-              show: true,
-              itemStyle: {},
-              offsetCenter: [0, '55%'],
-              size: 20,
-              icon: 'path://M-34.1-1.1L-34.1-1.1c0-0.3-0.3-0.6-0.6-0.6h-3.6v-1.5c0-0.5-0.2-0.9-0.6-1.1s-0.9-0.2-1.3,0c-0.4,0.2-0.6,0.7-0.6,1.1V7.9c0,0,0,0.1,0,0.1c-0.8,0.5-1.2,1.5-0.9,2.5c0.3,0.9,1.1,1.6,2.1,1.6c1,0,1.8-0.6,2.1-1.5c0.3-0.9,0-1.9-0.8-2.5V6.3h3.5c0.4,0,0.7-0.3,0.7-0.7l0,0c0-0.4-0.3-0.7-0.7-0.7h-3.5V2.9h3.5c0.4,0,0.7-0.3,0.7-0.7l0,0c0-0.4-0.3-0.7-0.7-0.7h-3.5v-2.1h3.6C-34.4-0.5-34.1-0.8-34.1-1.1z M-44.9,11.6c-0.7,0-1.4-0.2-2-0.6c-0.4-0.3-0.9-0.4-1.4-0.4c-0.4,0-0.9,0.2-1.2,0.4c-0.4,0.2-1.4-0.9-0.9-1.3c0.6-0.4,1.3-0.6,2-0.7c0.8,0,1.5,0.2,2.2,0.5c0.4,0.3,0.9,0.4,1.3,0.4c0.6,0,1.1-0.2,1.5-0.6s1.6,0.7,0.9,1.3S-44,11.6-44.9,11.6L-44.9,11.6z M-34.3,11.6c-0.7,0-1.4-0.3-2-0.7c-0.6-0.4,0.5-1.6,0.9-1.3s0.8,0.4,1.2,0.4c0.5,0,1-0.1,1.4-0.4c0.6-0.3,1.3-0.5,2-0.6h0c0.9,0,1.7,0.3,2.4,0.9c0.7,0.5-0.5,1.6-0.9,1.3c-0.4-0.3-1-0.6-1.5-0.6h0c-0.5,0-0.9,0.2-1.3,0.4c-0.6,0.3-1.3,0.5-2,0.6H-34.3z M-33.5,16.3c-0.7,0-1.4-0.3-1.9-0.8c-0.4-0.3-0.6-0.5-1-0.5c-0.4,0-0.7,0.2-1,0.4c-0.6,0.5-1.3,0.7-2,0.7c-0.7,0-1.4-0.3-1.9-0.8c-0.2-0.3-0.6-0.4-0.9-0.4c-0.4,0-0.7,0.1-1.1,0.5c-0.6,0.5-1.3,0.7-2.1,0.7c-0.7-0.1-1.4-0.4-1.9-0.9c-0.4-0.3-0.6-0.5-1-0.5c-0.3,0-0.6,0.2-0.9,0.4s-1.6-0.7-1.1-1.2c0.5-0.5,1.2-0.8,1.9-0.9c1-0.1,1.6,0.4,2.1,0.8c0.3,0.3,0.6,0.5,1,0.5c0.4,0,0.6-0.1,1-0.4c0.6-0.5,1.4-0.8,2.1-0.8c0.7,0,1.4,0.3,1.9,0.8c0.2,0.2,0.6,0.4,0.9,0.4c0.4,0,0.6-0.1,1-0.4c0.6-0.5,1.3-0.7,2-0.7c0.8,0,1.5,0.3,2,0.9c0.4,0.3,0.6,0.4,0.9,0.4c0.3,0,0.7-0.2,1.1-0.5c0.5-0.4,1.2-0.9,2.3-0.8c0.7,0,1.4,0.3,1.9,0.7c0.5,0.4-0.7,1.5-1,1.3s-0.6-0.4-1-0.4c-0.4,0-0.7,0.2-1.2,0.5C-32,15.9-32.7,16.2-33.5,16.3L-33.5,16.3z'
-          },
-          pointer: {
-              icon: 'path://M2.9,0.7L2.9,0.7c1.4,0,2.6,1.2,2.6,2.6v115c0,1.4-1.2,2.6-2.6,2.6l0,0c-1.4,0-2.6-1.2-2.6-2.6V3.3C0.3,1.9,1.4,0.7,2.9,0.7z',
-              width: 15,
-              length: '4',
-              offsetCenter: [0, '-90%'],
-              itemStyle: {
-                  color: '#f00'
-              }
-          },
-          title: {},
-          detail: {
-              show: false
-          },
-          data: [{
-              value: -120,
-              name: ''
-          }]
-      }
+      } 
   ]
   }
 function initChart(canvas, width, height, dpr) {
@@ -660,13 +644,39 @@ Page({
   onLoad: function(options) {
     let self = this
     setInterval(()=>{
-      guage_option.series[1].data[0].value = app.charge_info.currentnow; 
-      guage_option.series[2].data[0].value = app.charge_info.currentset; 
+      //current
+      /*test
+      app.charge_info.currentset = 20
+      app.charge_info.maxcurrent = 40
+      app.charge_info.currentnow = 20
 
-      guage_option.series[3].data[0].value = app.charge_info.voltagesetnow;
-      guage_option.series[4].data[0].value = app.charge_info.voltagesetnow; 
-      guage_option.series[5].data[0].value = app.charge_info.voltageset_bc; 
-      
+      app.charge_info.voltageout = 50
+      app.charge_info.voltagesetnow = 44;
+      app.charge_info.voltageset_bc = 65
+
+      app.charge_info.coulomb = 10
+      app.charge_info.temperature_diode = 40
+      app.charge_info.temperature_Ambient = 35
+      */
+      //
+      guage_option.series[0].max=app.charge_info.currentset
+      guage_option.series[1].max=parseInt(app.charge_info.currentset)
+      guage_option.series[1].data[0].value = app.charge_info.currentnow; 
+      guage_option.series[2].data[0].value = parseInt(app.charge_info.currentset); 
+      guage_option.series[3].data[0].value = app.charge_info.maxcurrent; 
+      //voltage
+      guage_option.series[4].data[0].value = app.charge_info.voltageout;
+      guage_option.series[5].data[0].value = app.charge_info.voltagesetnow; 
+      guage_option.series[6].data[0].value = app.charge_info.voltageset_bc; 
+      //others
+        guage_option.series[7].detail.formatter= [
+            `{a|                  00:00}`,
+            `{a|冲入电量 ${app.charge_info.coulomb}}{b| AH}`,
+            `{a|本次充电时间 ${app.charge_info.charger_time_now}}{b| min}`,
+            `{a|内部温度 ${app.charge_info.temperature_diode}}{b| °C}`,
+            `{a|环境温度 ${app.charge_info.temperature_Ambient}}{b| °C}`
+        ].join('\n')
+
       if (myChart){
         myChart.setOption(guage_option,true)
       }
