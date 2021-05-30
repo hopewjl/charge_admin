@@ -36,6 +36,13 @@ App({
   globalData: {
     userInfo: null
   },
+  bt:{
+    connected:false
+  },
+  //0=铅酸电池 1=磷酸铁锂 2=三元聚合物 4=自定义电池
+  battery_type_descr:[
+    "铅酸电池","磷酸铁锂","三元聚合物","自定义电池"
+  ],
   charge_info:{ 
     balanceData: "",
     hexstr: null,
@@ -51,22 +58,26 @@ App({
     temperature_diode: 0,
     temperature_Ambient: 0,
     charger_voltage_value: 0,
-    batterytype: 0,
-    battery_series: 0,
-    temperature_comp: 0,
+    batterytype: '铅酸',
+    battery_series: 10,
+    temperature_comp: 1,
+    circuit_comp:50,
     current_dec_value: 0,
     current_dec_timeset: 0,
-    soft_ver: '',
-    hard_ver: '',
+    soft_ver: 0,
+    hard_ver: 0,
     charger_time: '',
     charger_time_now: 0,
     power_time: '',
     coulomb: 0.0,
-    watthour: '',
-    time_yc: '',
-    time_kc: '',
-    time_bc: '',
-    time_wh: '',
-    voltageset_bc: 0
+    watthour: 0.0,
+    time_yc: 100,
+    time_kc: 0,
+    time_bc: 0,
+    time_wh: 0,
+    voltageset_bc: 0,
+    version_hdw: '1.0',
+    version_sw: '1.0',
+    charger_power:200,
   }
 })

@@ -47,13 +47,20 @@ Page({
   startWatcher: function(){
     var self = this
     let handler=setInterval(function () {
-     if (!self.data.connected){
+     if (!app.bt.connected){
       clearInterval(handler );
      }
      self.writeBLECharacteristicValue(self.data.cmd.ctl_vol)
     }, 1000)  
   },
-
+  //0=铅酸电池 1=磷酸铁锂 2=三元聚合物 4=自定义电池
+  getBatteryTypeStr(  batteryType){
+    if (batteryType >= 3){
+      return app.battery_type_descr[3]
+    }else {
+      return app.battery_type_descr[batteryType]
+    }
+  },
   ProcessingReceivedData: function (data) {
     var receiveData = new Uint8Array(data)
     var that = this
@@ -78,9 +85,11 @@ Page({
         })  
         break
       case 0xec:
+        let batterytype = receiveData[2]
+        let batteryTypeS = this.getBatteryTypeStr(batterytype)
         Object.assign(app.charge_info,{
           charger_voltage_value: receiveData[1] * 2,
-          batterytype: receiveData[2],
+          batterytype: batteryTypeS,
           battery_series: receiveData[3],
           temperature_comp: receiveData[4] / 10,
           current_dec_value: receiveData[5],
@@ -108,7 +117,8 @@ Page({
           time_kc: receiveData[2]/10,
           time_bc: receiveData[3]/10,
           time_wh: receiveData[4],
-          voltageset_bc: (receiveData[5] * 256 + receiveData[6]) / 100
+          voltageset_bc: (receiveData[5] * 256 + receiveData[6]) / 100,
+          charger_power: receiveData[7] *10
         })  
          break
       default:
@@ -193,6 +203,7 @@ Page({
     wx.createBLEConnection({
       deviceId,
       success: (res) => {
+        app.bt.connected = true
         this.setData({
           connected: true,
           name,
@@ -201,17 +212,19 @@ Page({
         })
         this.getBLEDeviceServices(deviceId)
         this.startWatcher()
+        wx.navigateTo({
+          url: '../gauge/index'
+        });
       }
     })
-    wx.navigateTo({
-      url: '../gauge/index'
-    });
+   
     this.stopBluetoothDevicesDiscovery()
   },
   closeBLEConnection() {
     wx.closeBLEConnection({
       deviceId: this.data.deviceId
     })
+    app.bt.connected = false
     this.setData({
       connected: false,
       chs: [],
@@ -272,6 +285,7 @@ Page({
     wx.onBLEConnectionStateChange((res)=> {
       // 该方法回调中可以用于处理连接意外断开等异常情况
       console.log(`device ${res.deviceId} state has changed, connected: ${res.connected}`)
+      app.bt.connected = res.connected
       this.setData({
         connected:res.connected,
       })

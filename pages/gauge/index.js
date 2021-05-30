@@ -103,7 +103,7 @@ let  guage_option ={
           },
           axisLabel: {
               distance: 14,
-              fontSize: 18,
+              fontSize: 12,
               fontWeight: 800,
               fontFamily: "Arial",
               color: '#fff'
@@ -123,7 +123,7 @@ let  guage_option ={
           },
           title: {
               color: '#fff',
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: 800,
               fontFamily: "Arial",
               offsetCenter: [0, 0]
@@ -174,7 +174,7 @@ let  guage_option ={
             formatter: '{b|当前设定电流:}{a|{value}}',
             rich: {
                 a: {
-                    fontSize: 20,
+                    fontSize: 12,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -182,7 +182,7 @@ let  guage_option ={
                     padding: [0, 0, 0, 0]
                 },
                 b: {
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -235,7 +235,7 @@ let  guage_option ={
             formatter: '{b|最大设定电流:}{a|{value}}',
             rich: {
                 a: {
-                    fontSize: 20,
+                    fontSize: 12,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -243,7 +243,7 @@ let  guage_option ={
                     padding: [0, 0, 0, 0]
                 },
                 b: {
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -262,7 +262,7 @@ let  guage_option ={
       {
           name: 'gauge 4',
           type: 'gauge',
-          min: 40,
+          min: 45,
           max: 65,
           z: 10,
           startAngle: 210,
@@ -304,7 +304,7 @@ let  guage_option ={
           },
           axisLabel: {
               distance: 10,
-              fontSize: 18,
+              fontSize: 14,
               fontWeight: 800,
               fontFamily: "Arial",
               color: '#fff'
@@ -324,7 +324,7 @@ let  guage_option ={
           },
           title: {
               color: '#fff',
-              fontSize: 16,
+              fontSize: 12,
               fontWeight: 800,
               fontFamily: "Arial",
               offsetCenter: ['20%', '0%']
@@ -374,7 +374,7 @@ let  guage_option ={
               formatter: '{b|当前设定电压:}{a|{value}}',
               rich: {
                   a: {
-                      fontSize: 18,
+                      fontSize: 14,
                       fontWeight: 800,
                       fontFamily: "Arial",
                       color: '#fff',
@@ -382,7 +382,7 @@ let  guage_option ={
                       padding: [0, 0, 0, 0]
                   },
                   b: {
-                      fontSize: 14,
+                      fontSize: 12,
                       fontWeight: 800,
                       fontFamily: "Arial",
                       color: '#fff',
@@ -434,7 +434,7 @@ let  guage_option ={
             formatter: '{b|最高设定电压:}{a|{value}}',
             rich: {
                 a: {
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -442,7 +442,7 @@ let  guage_option ={
                     padding: [0, 0, 0, 0]
                 },
                 b: {
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: 800,
                     fontFamily: "Arial",
                     color: '#fff',
@@ -492,15 +492,15 @@ let  guage_option ={
           detail: {
               offsetCenter: [0, 0],
               formatter: [
-                  '{a|                  00:00}',
-                  '{a|冲入电量 }{b| AH}',
+                `{a|冲入电量 }{b|${app.charge_info.coulomb} AH}`,
+                `{a|        }{b|${app.charge_info.watthour} WH}`,
                   '{a|本次充电时间 }{b| min}',
                   '{a|内部温度 }{b| °C}',
                   '{a|环境温度 }{b| °C}'
               ].join('\n'),
               rich: {
                   a: {
-                      fontSize: 14,
+                      fontSize: 12,
                       fontWeight: 800,
                       fontFamily: "Arial",
                       lineHeight: 22,
@@ -565,7 +565,7 @@ let  guage_option ={
           },
           axisLabel: {
               distance: 12,
-              fontSize: 18,
+              fontSize: 12,
               fontWeight: 800,
               fontFamily: "Arial",
               color: '#fff',
@@ -596,7 +596,7 @@ let  guage_option ={
               formatter: '{a|0}{b| %}',
               rich: {
                   a: {
-                      fontSize: 15,
+                      fontSize: 12,
                       fontWeight: 800,
                       fontFamily: "Arial",
                       color: '#fff'
@@ -612,7 +612,199 @@ let  guage_option ={
               value: 0.5,
               name: ''
           }]
-      } 
+      } ,
+      // center below :gauge 9 ,
+      {
+        name: 'gauge 9',
+        type: 'gauge',
+        min: 0,
+        max: 8,
+        z: 10,
+        splitNumber: 8,
+        radius: '90%',
+        axisLine: {
+            lineStyle: {
+                width: 14,
+                color: [
+                    [1, '#000']
+                ],
+            }
+        },
+        splitLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false
+        },
+        anchor: {},
+        pointer: {
+            show: false
+        },
+        title: {
+            show: false
+        },
+        detail: {
+            offsetCenter: ['0%', '75%'],
+            formatter:  [ 
+                `{a|温度补偿 ${app.charge_info.temperature_comp}}{b| mV/°C} {a|线损补偿 ${app.charge_info.circuit_comp}}{b| mΩ}`,
+                `{a|预充时间 ${app.charge_info.time_yc}}{b| min} {a|快充时间 ${app.charge_info.time_kc}}{b| 小时}`,
+                `{a|标充时间 ${app.charge_info.time_bc}}{b| 小时} {a|维护时间 ${app.charge_info.time_wh}}{b| 分钟}`
+             ].join('\n'),
+            rich: {
+                a: {
+                    fontSize: 12,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    align: 'center',
+                    padding: [0, 0, 0, 0]
+                },
+                b: {
+                    fontSize: 14,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    rotate: 30,
+                    padding: [0, 0, 0, 0]
+                }
+            }
+        },
+        // value is speed
+        data: [{
+            value: 2,
+            name: ''
+        }]
+      },
+      //version guage 10
+      {
+        name: 'gauge 10',
+        type: 'gauge',
+        min: 0,
+        max: 8,
+        z: 10,
+        splitNumber: 8,
+        radius: '90%',
+         axisLine: {
+            lineStyle: {
+                width: 14,
+                color: [
+                    [1, '#000']
+                ],
+            }
+        },
+        splitLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false
+        },
+        anchor: {},
+        pointer: {
+            show: false
+        },
+        title: {
+            show: false
+        },
+        detail: {
+            offsetCenter: ['160%', '90%'],
+            formatter:  [ 
+                `{a|软件版本 ${app.charge_info.soft_ver}}{b|} {a|硬件版本 ${app.charge_info.hard_ver}}{b| }` 
+             ].join('\n'),
+            rich: {
+                a: {
+                    fontSize: 12,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    align: 'center',
+                    padding: [0, 0, 0, 0]
+                },
+                b: {
+                    fontSize: 14,
+                    fontWeight: 800,
+                    fontFamily: "Arial",
+                    color: '#fff',
+                    rotate: 30,
+                    padding: [0, 0, 0, 0]
+                }
+            }
+        },
+        // value is speed
+        data: [{
+            value: 2,
+            name: ''
+        }]
+      },
+             //version guage 11
+             {
+                name: 'gauge 10',
+                type: 'gauge',
+                min: 0,
+                max: 8,
+                z: 10,
+                splitNumber: 8,
+                radius: '90%', 
+                 axisLine: {
+                    lineStyle: {
+                        width: 14,
+                        color: [
+                            [1, '#000']
+                        ],
+                    }
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                anchor: {},
+                pointer: {
+                    show: false
+                },
+                title: {
+                    show: false
+                },
+                detail: {
+                    offsetCenter: ['-180%', '-80%'],
+                    formatter:  [ 
+                        `{a|充电器功率: ${app.charge_info.charger_power} }{b|W} ` ,
+                        `{a|电池类型： ${app.charge_info.batterytype} }{b|${app.charge_info.battery_series} 串}   ` 
+                     ].join('\n'),
+                    rich: {
+                        a: {
+                            fontSize: 12,
+                            fontWeight: 800,
+                            fontFamily: "Arial",
+                            color: '#fff',
+                            align: 'center',
+                            padding: [0, 0, 0, 0]
+                        },
+                        b: {
+                            fontSize: 12,
+                            fontWeight: 800,
+                            fontFamily: "Arial",
+                            color: '#fff',
+                            rotate: 30,
+                            padding: [0, 0, 0, 0]
+                        }
+                    }
+                },
+                // value is speed
+                data: [{
+                    value: 2,
+                    name: ''
+                }]
+              }    
   ]
   }
 function initChart(canvas, width, height, dpr) {
@@ -644,6 +836,7 @@ Page({
   onLoad: function(options) {
     let self = this
     setInterval(()=>{
+
       //current
       /*test
       app.charge_info.currentset = 20
@@ -651,15 +844,22 @@ Page({
       app.charge_info.currentnow = 20
 
       app.charge_info.voltageout = 50
-      app.charge_info.voltagesetnow = 44;
-      app.charge_info.voltageset_bc = 65
+      app.charge_info.voltagesetnow = 20;
+     app.charge_info.voltageset_bc = 65
 
       app.charge_info.coulomb = 10
       app.charge_info.temperature_diode = 40
       app.charge_info.temperature_Ambient = 35
+      app.charge_info.time_yc = 60
+      app.charge_info.temperature_comp = 30
       */
       //
-      guage_option.series[0].max=app.charge_info.currentset
+      if (!app.bt.connected){
+        wx.navigateBack({
+            delta: 1,  //返回的层数
+          })
+      }
+      guage_option.series[0].max=parseInt(app.charge_info.currentset)
       guage_option.series[1].max=parseInt(app.charge_info.currentset)
       guage_option.series[1].data[0].value = app.charge_info.currentnow; 
       guage_option.series[2].data[0].value = parseInt(app.charge_info.currentset); 
@@ -669,14 +869,28 @@ Page({
       guage_option.series[5].data[0].value = app.charge_info.voltagesetnow; 
       guage_option.series[6].data[0].value = app.charge_info.voltageset_bc; 
       //others
-        guage_option.series[7].detail.formatter= [
-            `{a|                  00:00}`,
-            `{a|冲入电量 ${app.charge_info.coulomb}}{b| AH}`,
+        guage_option.series[7].detail.formatter= [ 
+            `{a|冲入电量 }{b|${app.charge_info.coulomb} AH}`,
+            `{a|        }{b|${app.charge_info.watthour} WH}`,
             `{a|本次充电时间 ${app.charge_info.charger_time_now}}{b| min}`,
             `{a|内部温度 ${app.charge_info.temperature_diode}}{b| °C}`,
             `{a|环境温度 ${app.charge_info.temperature_Ambient}}{b| °C}`
         ].join('\n')
+        // center bottom
+        guage_option.series[9].detail.formatter = [ 
+            `{a|温度补偿 ${app.charge_info.temperature_comp}}{b| mV/°C} {a|线损补偿 ${app.charge_info.circuit_comp}}{b| mΩ}`,
+            `{a|预充时间 ${app.charge_info.time_yc}}{b| min} {a|快充时间 ${app.charge_info.time_kc}}{b| 小时}`,
+            `{a|标充时间 ${app.charge_info.time_bc}}{b| 小时} {a|维护时间 ${app.charge_info.time_wh}}{b| 分钟}`
+        ].join('\n')
 
+        guage_option.series[10].detail.formatter=[ 
+            `{a|软件版本 ${app.charge_info.soft_ver}}{b|} {a|硬件版本 ${app.charge_info.hard_ver}}{b| }`
+         ].join('\n')
+
+        guage_option.series[11].detail.formatter=[ 
+            `{a|充电器功率: ${app.charge_info.charger_power} }{b|W} ` ,
+            `{a|电池类型： ${app.charge_info.batterytype} }{b|${app.charge_info.battery_series} 串}   `
+         ].join('\n')
       if (myChart){
         myChart.setOption(guage_option,true)
       }
